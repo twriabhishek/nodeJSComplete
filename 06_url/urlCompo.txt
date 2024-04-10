@@ -1,0 +1,9 @@
+https://developer.mozilla.org/en-US/search?q=URL&user=1;
+
+
+https ::-- Protocol
+developer.mozilla.org ::-- Domain[Domain name is basically a user friendly name of IP address]
+/en-US/search ::-- Nested Path of url
+?q=URL&user=1 ::-- Query Parametre[Two query separated from &]
+
+

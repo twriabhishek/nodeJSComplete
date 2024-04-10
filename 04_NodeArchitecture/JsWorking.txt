@@ -1,0 +1,15 @@
+::::::::::::::HOW NODEJS WORK:::::::::::
+
+1)Jab client koi request karta hai then wo request server ke pass jati hai.
+2)Every request jo client n kiya hai wo server ke  pass ek queue m lagti chali jati hai.
+3)Uskey baad ek-ek request event loop m aati hai serve honey ke liye.
+4)Yeh request ya to blocking ho sakti hai ya t non-blocking.
+5)Means asynchronous request blocking hoti hai and synchronous request non-blocking hoti hai.
+6)Agar koi request non-blocking hai then wo event loop m pass ho jati hai aur then server uska response send kar deta hai.
+7)Agar request blocking hai then event loop check karega ki koi thread/worker available hai agar availbale hoga
+then eventloop us blocking request ko uss worker/tread ko Assisgn kar daga aur wo thread usse karr dega after 
+complete honey k baad wo thread response return kar dega aur phir s free ho jaega.
+8)Hamarey pass threads limited hotey hai. By default 4  thread hotey hai.
+9)Try karo ki code non-blocking likho yahi good practic hai.
+10)Synchronous request:- blocking request, Asynchronous request:- non-blocking request
+11)Default Thread Poll:- 4,  but max Thread Poll:- number of core in cpu's

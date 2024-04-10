@@ -1,0 +1,15 @@
+VERSIONING IN NODE
+
+
+^4.19.2 :- There are 3 parts in version.
+
+First part[4]:-Major Fixes{Breaking up}.
+Second part[19]:-Recommended Fixes{Security Fix}.
+Third part[2]:-Minor Fixes{optional}.
+
+^{carrot symbol}:-  Install all Recommended and Minor fixes release version automatically.[Kewal Major fix ko nahi karta hai]
+~{squiglyline symbol}:-  Install all Minor fix release version automatically.[Kewal Major aur Recommended fix ko nahi karta hai]
+
+
+
+^4.19.2:- carrot symbol lock karr deta hai Major release ko Means Recommended and Minor fixes ke version hi change hotey hai.
