@@ -1,0 +1,36 @@
+HTTP response status codes indicate whether a specific HTTP request has been successfully completed. 
+Responses are grouped in five classes:
+
+Informational responses (100 – 199)
+Successful responses (200 – 299)
+Redirection messages (300 – 399)
+Client error responses (400 – 499)
+Server error responses (500 – 599)
+
+For a PUT request: HTTP 200, HTTP 204 should imply "resource updated successfully". HTTP 201 if the PUT request created a new resource.
+
+For a DELETE request: HTTP 200 or HTTP 204 should imply "resource deleted successfully".
+
+
+
+//Successful Response[start with 2xx]
+200: OK(get)
+201: Created(post)
+204: No content(put, patch, delete)
+
+
+//Client error response[start 4xx]
+400: Bad request[Suppose client n ek post request kiya uss post request ki body m name, email, gender, address bhejna tha 
+lekin client n kuch neccessary information miss karr diya then uss case m hum 400 bhejtey hai.]
+401: Unautorized[You are not authenticated]
+402: payment Required
+403: Forbidden[Tumney login hi nahi kiya then 401, but tum allowed/permission hi nahi hai then 403]
+404: Not found[Agar route exist hi nhi karta then 404]
+
+
+//Server error response[start 5xx]
+500: Internal server error[code error, syntax error, typo error]
+501: Not implemented
+
+
+

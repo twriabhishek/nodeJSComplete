@@ -1,0 +1,211 @@
+Model View Controller[MVC]
+
+Controller>>>>>>Model>>>>>>>View
+*Controller, Model ko manupulate karta hai and Model, View ko update karta hai.
+
+Why we MVC Pattern?
+Sure, here are five important points about the MVC (Model-View-Controller) architectural pattern:
+
+1. **Separation of Concerns**: MVC separates an application into three distinct components: Model, View, and Controller. Each component has a specific responsibility:
+   - Model: Represents the data and business logic of the application. It interacts with the database, performs data manipulation, and enforces business rules.
+   - View: Represents the presentation layer of the application. It displays the data to the user and interacts with the user interface.
+   - Controller: Acts as an intermediary between the Model and View. It handles user input, processes requests, updates the Model, and selects the appropriate View to render.
+
+2. **Modularity and Reusability**: MVC promotes modularity by organizing code into separate components, making it easier to manage and maintain. Each component can be developed, tested, and updated independently, enhancing code reusability and scalability.
+
+3. **Flexibility and Extensibility**: The MVC pattern allows for flexible development workflows and supports extensibility. Developers can modify or add new features to the application without impacting other components. For example, changes to the user interface (View) do not affect the underlying data logic (Model) or application flow (Controller).
+
+4. **Enhanced Testability**: MVC facilitates unit testing and improves code testability. Since each component has a well-defined responsibility, it's easier to write unit tests to validate the behavior of individual components. This leads to better code quality, fewer bugs, and easier maintenance.
+
+5. **Support for Multiple User Interfaces**: MVC enables the development of applications with multiple user interfaces (e.g., web, mobile, API) using the same underlying business logic. By separating the presentation logic (View) from the application logic (Model and Controller), MVC makes it easier to adapt the application to different user interfaces and platforms.
+
+Overall, the MVC architectural pattern provides a structured approach to software development, promoting code organization, modularity, flexibility, and testability. It is widely used in web development frameworks and applications due to its numerous benefits in terms of scalability, maintainability, and user interface support.
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------------------------------------------
+To refactor the provided code into an MVC (Model-View-Controller) structure, we'll organize the code into separate modules for the model, controller, and routes. Here's how you can refactor it:
+
+### 1. Model (userModel.js)
+```javascript
+const mongoose = require("mongoose");
+
+const userSchema = mongoose.Schema({
+  id: {
+    type: Number,
+    required: true,
+    unique: true,
+  },
+  first_name: {
+    type: String,
+    required: true,
+  },
+  last_name: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  gender: {
+    type: String,
+    required: true,
+  },
+  job_title: {
+    type: String,
+    required: true,
+  },
+});
+
+module.exports = mongoose.model("User", userSchema);
+```
+
+### 2. Controller (userController.js)
+```javascript
+const User = require("../models/userModel");
+
+exports.getAllUsers = async (req, res) => {
+  try {
+    const allUsers = await User.find({});
+    return res.status(200).send(allUsers);
+  } catch (error) {
+    console.error("Error Fetching user:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+exports.getUserById = async (req, res) => {
+  try {
+    const userId = Number(req.params.id);
+    const user = await User.findOne({ id: userId });
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    return res.status(200).send(user);
+  } catch (error) {
+    console.error("Error Fetching user:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+exports.createUser = async (req, res) => {
+  try {
+    const allUsers = await User.find({});
+    const createdid = allUsers.length + 1;
+
+    if (
+      !req.body.first_name ||
+      !req.body.last_name ||
+      !req.body.email ||
+      !req.body.gender ||
+      !req.body.job_title
+    ) {
+      return res.status(400).send({ msg: "All field are required" });
+    }
+    const result = await User.create({
+      id: createdid,
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      email: req.body.email,
+      gender: req.body.gender,
+      job_title: req.body.job_title,
+    });
+    return res.status(201).send({ message: "Successfully created" });
+  } catch (error) {
+    console.error("Error Creating user:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+exports.updateUser = async (req, res) => {
+  try {
+    const { first_name, last_name, email, gender, job_title } = req.body;
+    const userId = Number(req.params.id);
+    const ExistingUser = await User.findOne({ id: userId });
+
+    if (!ExistingUser) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    ExistingUser.first_name = first_name;
+    ExistingUser.last_name = last_name;
+    ExistingUser.email = email;
+    ExistingUser.gender = gender;
+    ExistingUser.job_title = job_title;
+
+    await ExistingUser.save();
+    return res.status(200).json({ message: "Data Updated Successfully" });
+  } catch (error) {
+    console.error("Error Updating user:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+exports.deleteUser = async (req, res) => {
+  try {
+    const userId = Number(req.params.id);
+    const user = await User.findOne({ id: userId });
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    await User.deleteOne({ id: userId });
+    return res.status(200).json({ message: "User deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting user:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+```
+
+### 3. Routes (userRoutes.js)
+```javascript
+const express = require("express");
+const router = express.Router();
+const userController = require("../controllers/userController");
+
+router.get("/", userController.getAllUsers);
+router.get("/:id", userController.getUserById);
+router.post("/", userController.createUser);
+router.put("/:id", userController.updateUser);
+router.delete("/:id", userController.deleteUser);
+
+module.exports = router;
+```
+
+### 4. App.js
+```javascript
+const express = require("express");
+const mongoose = require("mongoose");
+const userRoutes = require("./routes/userRoutes");
+
+const app = express();
+app.use(express.json());
+
+const PORT = 8023;
+
+mongoose
+  .connect("mongodb://127.0.0.1:27017/nodeTest")
+  .then(() => {
+    console.log("MongoDB connected");
+  })
+  .catch((err) => {
+    console.log("Error", err);
+  });
+
+app.use("/api/v1/user", userRoutes);
+
+app.listen(PORT, () => {
+  console.log(`Server is listening on Port: ${PORT}`);
+});
+```
+
+This refactoring separates concerns into Model, Controller, and Routes, making the codebase more organized and maintainable according to the MVC pattern.

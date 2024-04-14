@@ -1,0 +1,26 @@
+1)Middleware ek middleman ki tarah hota hai. Means jab hum koi bhi request client s kartey hai then uss request
+ko firstly middleware tackle karta hai uskey baad wo request apne route par jati hai aur iskey baad jab 
+response jata hai then client side par response bhejne s pahley wo middleware ke pass jata hai.
+
+2)Hum layman term m yeh kah saktey hai ki jab koi request client s aati hai then wo server honey s pahley 
+middleware s milti hai uskey baad serve hoti hai aur jab response client ko jata hai then janey s pahley 
+wo middleware s milkar client ko jata hai.
+
+3)Middleware readymade aur custom dono tarekey k hotey hai.
+
+4)Ek code m kitney bhi middleware ho saktey hai.
+
+
+
+------------------------------------------------------------------------------------------------------------
+Middleware functions are functions that have access to the request object (req), the response object (res),
+and the next middleware function in the application’s request-response cycle. The next middleware function 
+is commonly denoted by a variable named next.
+
+Middleware functions can perform the following tasks:
+
+*)Execute any code.
+*)Make changes to the request and the response objects.
+*)End the request-response cycle.
+*)Call the next middleware function in the stack.
+

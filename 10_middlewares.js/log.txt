@@ -1,0 +1,10 @@
+
+HTTP method: GET, Request Path: /api/v1/user, Request Time: 13/4/2024, 4:07:42 pm
+HTTP method: GET, Request Path: /api/v1/user, Request Time: 13/4/2024, 4:08:58 pm
+HTTP method: GET, Request Path: /api/v1/user, Request Time: 13/4/2024, 4:09:32 pm
+HTTP method: GET, Request Path: /api/v1/user/78, Request Time: 13/4/2024, 4:09:50 pm
+HTTP method: POST, Request Path: /api/v1/user/, Request Time: 13/4/2024, 4:09:57 pm
+HTTP method: PUT, Request Path: /api/v1/user/6789, Request Time: 13/4/2024, 4:10:05 pm
+HTTP method: DELETE, Request Path: /api/v1/user/6789, Request Time: 13/4/2024, 4:10:11 pm
+HTTP method: DELETE, Request Path: /api/v1/user/6789, Request Time: 13/4/2024, 4:10:12 pm
+HTTP method: DELETE, Request Path: /api/v1/user/6789, Request Time: 13/4/2024, 4:10:13 pm

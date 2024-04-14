@@ -6,8 +6,9 @@ const port = 8023;
 
 app.use(express.json());
 
+
 //In this we do ssr[server side rendering]
-app.get("/user", (req, res) => {
+app.get("/v1/user", (req, res) => {
   const html = `
   \n<ul>
       ${users
@@ -29,24 +30,29 @@ app.get("/user", (req, res) => {
 
 
 
-app.get("/api/user", (req, res) => {
+app.get("/api/v1/user", (req, res) => {
   res.send(users);
 });
 
 
 
-app.get("/api/user/:id", (req, res) => {
+app.get("/api/v1/user/:id", (req, res) => {
   const id = Number(req.params.id);
   const user = users.find((user) => user.id === id);
-  res.send(user);
+  if(user){
+    res.send(user);
+  }
+  else {
+    res.send("User not existed");
+  }
 });
 
 
 
-app.post("/api/user", (req, res) => {
+app.post("/api/v1/user", (req, res) => {
   const newUser = req.body;
-  const genratedID = users.length + 1;
-  users.push({ genratedID, ...newUser });
+  const id = users.length + 1;
+  users.push({ id, ...newUser });
   fs.writeFile("./MOCK_DATA.json", JSON.stringify(users), (err, data) => {
     res.send("Succesfully created");
   });
@@ -54,7 +60,7 @@ app.post("/api/user", (req, res) => {
 
 
 
-app.put("/api/user/:id", (req, res) => {
+app.put("/api/v1/user/:id", (req, res) => {
   const { first_name, last_name, email, gender, job_title } = req.body;
   const id = Number(req.params.id);
   const ExistingUser = users.find((user) => user.id === id);
@@ -79,7 +85,7 @@ app.put("/api/user/:id", (req, res) => {
 
 
 
-app.delete("/api/user/:id", (req, res) => {
+app.delete("/api/v1/user/:id", (req, res) => {
     const id = Number(req.params.id);
     const updatedUsers = users.filter(user => user.id !== id);
 

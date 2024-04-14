@@ -1,0 +1,23 @@
+Suppose A aur B 2 friends hai. A, B ko letter bhejta hai. A letter ko likhta hai then usko ek envelop m pack 
+kar deta hai. Aur us envelop par A, B ki information likta hai like as address, pincode, street number like that.
+Ab agar hum relate karey in cheezon ko computer terminology s then hum kah saktey hai ki:
+
+A act as client
+B act as server
+Meta information as a header
+letter act as real data
+Postman act as internet
+
+
+
+
+HTTP Header:-
+HTTP headers are an important part of the api request and response as they respresent the meta data associated
+with the API request and response.
+Headers carry information for the request  and response body.
+
+
+Headers builtin and custom two types k hotey hai.
+Always remember jab bhi hum custom header banaye then uskey aagey X ko append karr le.
+
+

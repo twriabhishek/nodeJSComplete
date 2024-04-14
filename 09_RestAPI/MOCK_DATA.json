@@ -7990,5 +7990,13 @@
     "email": "msimysonrq@vistaprint.com",
     "gender": "Non-binary",
     "job_title": "Safety Technician I"
+  },
+  {
+    "id": 1000,
+    "first_name": "Rohit",
+    "last_name": "Sardana",
+    "email": "rohit.S@gmail.com",
+    "gender": "Male",
+    "job_title": "Software Dev"
   }
 ]
