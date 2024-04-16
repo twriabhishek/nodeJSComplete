@@ -26,6 +26,7 @@ lekin client n kuch neccessary information miss karr diya then uss case m hum 40
 402: payment Required
 403: Forbidden[Tumney login hi nahi kiya then 401, but tum allowed/permission hi nahi hai then 403]
 404: Not found[Agar route exist hi nhi karta then 404]
+409: Conflict Status code[If you perform post operation and key[username, email etc] already present in db then we send 409].
 
 
 //Server error response[start 5xx]
