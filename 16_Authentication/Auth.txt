@@ -1,0 +1,57 @@
+Authentication?
+
+Authentication is the process of verifying the identity of a user or system attempting to access a resource
+or service. It ensures that the entity requesting access is who it claims to be. Authentication mechanisms 
+typically involve presenting credentials, such as passwords, tokens, or biometric data, to a system, which 
+then validates these credentials to grant or deny access.
+
+There are two Pattern of Authentication:-
+Stateful Authentication[Maintain state or data on server side]
+Stateless Authentication[Which has no state]
+
+1. **Stateful Authentication**:
+
+   - In stateful authentication, the server maintains the session state for each authenticated user. 
+   - When a user logs in, the server creates a session object or token that represents the user's authenticated state.
+   - This session object is typically stored on the server-side, either in memory or in a persistent storage mechanism like a database.
+   - The server sends the session identifier (e.g., session ID or token) to the client, usually in the form of a cookie.
+   - For each subsequent request, the client includes the session identifier in the request headers.
+   - The server uses this session identifier to look up the corresponding session object and determine whether the user is authenticated.
+   - Stateful authentication is commonly used in traditional web applications where the server maintains session state.
+
+2. **Stateless Authentication**:
+
+   - In stateless authentication, the server does not store session state for authenticated users.
+   - Instead of storing session data on the server, the server generates a token containing the user's identity and possibly other information (e.g., expiration time, permissions).
+   - This token is typically signed by the server to prevent tampering and can be encoded using formats like JSON Web Tokens (JWT).
+   - The server sends the token to the client after successful authentication.
+   - For each subsequent request, the client includes the token in the request headers.
+   - The server verifies the token's signature and decodes it to extract the user's identity and other relevant information.
+   - Stateless authentication is commonly used in modern web applications and APIs, as it eliminates the need for server-side session storage and can improve scalability and performance.
+
+
+
+------------------------------------------------------------------------------------------------------------
+1)Suppose ek client hai jisney apna username and passwords fill karkey login kiya. Jab request server ke pass gayi tab
+server n response m ek session_uid return kiya and server n ne iss session_uid ka ek track bhi rakh liya means server
+state maintain  karr raha hai. 
+2)Ab hum jab tak login hai tabb tak hum server parr koi bhi request kartey hai then humko apni session_uid dikhani hogi.
+3)Suppose humney getuser ke liye request kiya aur iskey sath session_uid bhi bheja server n request m send ki gayi
+session_uid ko apni state m check kiya agar valid ho then server authenticate karr diya aur iskey sath hai
+desired response bhi send kar diya.
+
+
+
+How to transfer session_uid?
+cookie[Mostly use in ssr]
+response
+headers
+
+
+Express flow?
+
+Client->Auth middleware->endpoint route
+
+*)Agar mera server restart hota hai or somehow agar hamari state lost ho jati hai.Then sabhi logout
+ho jatey hai.
+*)Stateful Authentication memory intensive hota hai.

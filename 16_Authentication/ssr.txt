@@ -1,0 +1,22 @@
+*)Server side rendering ek concept hai jisme hum complete html and css backend s hi render karatey hai.
+
+
+Server-side rendering (SSR) is a technique used in web development where the server generates the HTML of a web page that is requested by the client (usually a web browser). This means that the server processes the code, executes any necessary scripts, and compiles the HTML content to send back to the client's browser.
+
+In contrast to client-side rendering (CSR), where the browser downloads a minimal HTML file and then the client-side JavaScript code executes to dynamically render the page content, SSR sends fully rendered HTML to the client from the server.
+
+SSR has several advantages, including:
+
+1. **Improved initial load time**: Since the server sends pre-rendered HTML, the browser can display the page content faster, especially on slower devices or connections.
+2. **Better SEO**: Search engines can easily crawl and index the content since it's available in the initial HTML response.
+3. **Enhanced performance on low-powered devices**: Devices with limited processing power benefit from receiving pre-rendered HTML instead of having to execute JavaScript to render the page.
+4. **Accessibility**: Users with JavaScript disabled can still access the content because the server sends fully rendered HTML.
+
+However, SSR also has some downsides, such as increased server load and complexity in managing server-side rendering for dynamic content. It's often used in conjunction with client-side rendering to achieve the benefits of both approaches, a strategy known as universal or isomorphic rendering.
+
+
+---------------------------------------------------------------------------------------------------------
+1)Hum chahey then route define karney k baad uskey just nichey complete html and css return kar saktey hai.
+2)Lekin yeh karney s code bahut bulky ho jata hai.
+3)Isi problem ko solve karney k liye kuch template engines hotey hai like as ejs(embedded javascript template engine), pug and handlebars.
+4)Yeh template engines hamarey liye ssr ki problem ko solve karety hai.

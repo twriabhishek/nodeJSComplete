@@ -1,0 +1,33 @@
+1)Suppose client n username and password daal diya aur server ko login honey ke liye request kiya then 
+Server n apne db m check kiya ki client valid hai ki nahi aur agar client valid hoga then server response bhejega.
+2)server response 2 types s bhej sakta hai either using cookies or res.
+3)Jab server response m cookies send karta hai then browser[client] by-default isko store karr leta hai.
+4)Abb agar login honey k baad browser[client] s koi bhi request server ko wapis jaegi then browser by default sath m yeh cookies bhi 
+send  karr dega.
+5)Abb browser koi bhi information client ko bhejney s pahley cookie ko verify karega then kuch send karega.
+
+
+*)cookie domain specific hoti hai. Means agar same browser s 2 or more than two websites par login hota hai then
+iskey baad hum jiss bhi websites parr request karenge then usi ki cookie uss websites parr jaegi.
+
+
+*)In cookie we also set expiry time.
+
+
+
+
+Authentication VS Authorization
+
+1)Authentication: It means agar koi client login karr raha hai apney username and password s then wo ek valid client
+or authenticate client hai bhi ki nahi.
+
+2)Authorization: It means agar koi client kisi resource ko access karna chahta hai then wo client uss resource
+ko access karney k liye authorize hai bhi ki nahi.
+
+
+
+
+*)Cookie ek browser ki property hai. Hum cookie ko mobile application me use nahi kar saktey.
+*)Mobile application ke case m hum response send kartey hai.
+
+https://swagger.io/docs/specification/authentication/bearer-authentication/
