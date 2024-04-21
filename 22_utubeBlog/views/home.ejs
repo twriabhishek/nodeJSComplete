@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include('./partials/head.ejs') %>
+
+    <title>Vloging App</title>
+  </head>
+  <body>
+    <!-- NavBar -->
+    <%- include('./partials/navbar.ejs') %>
+    <!-- NavBar -->
+
+    <!-- <%= JSON.stringify(blogs) %> -->
+
+    <!-- All Blogs  -->
+    <div class="container mt-1">
+      <% if (blogs && blogs.length > 0) { %> <% for (let i = 0; i <
+      blogs.length; i += 2) { %>
+      <div class="row mt-2 mb-2">
+        <% if (blogs[i]) { %>
+        <div class="col-md-6">
+          <div class="card">
+            <img
+              src="<%= blogs[i].coverImageUrl %>"
+              class="card-img-top"
+              alt="Image Unavailable"
+              style="height: 501px"
+            />
+            <div class="card-body">
+              <h5 class="card-title"><%= blogs[i].title %></h5>
+              <p class="card-text" style="max-height: 200px; overflow-y: auto;"><%= blogs[i].body %></p>
+              <div class="d-flex justify-content-between align-items-center">
+                <a
+                  href="/api/v1/blog/<%= blogs[i]._id %>"
+                  class="btn btn-primary"
+                  >View</a
+                >
+                <span>Written By: <span class="fw-bolder"><%= blogs[i].createdBy.fullName %></span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% } %> <% if (blogs[i + 1]) { %>
+        <div class="col-12 col-md-6">
+          <div class="card">
+            <img
+              src="<%= blogs[i + 1].coverImageUrl %>"
+              class="card-img-top"
+              alt="Image Unavailable"
+              style="height: 501px"
+            />
+            <div class="card-body">
+              <h5 class="card-title"><%= blogs[i + 1].title %></h5>
+              <p class="card-text" style="height: 200px; overflow-y: auto;"><%= blogs[i + 1].body %></p>
+              <div class="d-flex justify-content-between align-items-center">
+                <a
+                  href="/api/v1/blog/<%= blogs[i + 1]._id %>"
+                  class="btn btn-primary"
+                  >View</a
+                >
+                <span>Written By: <span class="fw-bolder"><%= blogs[i + 1].createdBy.fullName %></span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% } %>
+      </div>
+      <% } %> <% } else { %>
+      <p>No blogs found.</p>
+      <% } %>
+    </div>
+    <!-- All Blogs  -->
+
+    <%- include('./partials/script.ejs') %>
+  </body>
+</html>

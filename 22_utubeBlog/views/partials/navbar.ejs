@@ -1,0 +1,65 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      <img
+        src="/images/75_abstract.jpg"
+        alt=""
+        width="30"
+        height="24"
+        class="d-inline-block align-text-top"
+      />
+      VlogiFY
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav ms-auto">
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle text-white"
+            href="#"
+            id="navbarDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <% if (locals.user) { %> <% let fullName = locals.user.name; %> <%
+            var firstName = fullName.split(' ')[0]; %> Welcome <%= firstName %>
+            <% } else {%> Actions <% }%>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <% if (locals.user) { %>
+              <li>
+                <a class="dropdown-item" href="/api/v1/auth/logout">Logout</a>
+              </li>
+            <% } else {%>
+            <li>
+              <a class="dropdown-item" href="/api/v1/auth/login">Login</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/api/v1/auth/Signup">Signup</a>
+            </li>
+            <%} %>
+          </ul>
+        </li>
+
+        <a class="nav-link active" aria-current="page" href="#">Home</a>
+        <a class="nav-link active" aria-current="page" href="#">About</a>
+        <a class="nav-link active" aria-current="page" href="#">Contact</a>
+        <% if (locals.user) { %>
+        <a class="nav-link active" aria-current="page" href="/api/v1/blog/addBlog">Add Blogs</a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>
+

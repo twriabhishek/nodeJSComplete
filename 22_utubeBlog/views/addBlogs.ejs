@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include('./partials/head.ejs') %>
+
+    <title>Add Blogs</title>
+  </head>
+  <body>
+    <!-- NavBar -->
+    <%- include('./partials/navbar.ejs') %>
+    <!-- NavBar -->
+
+    <% {locals.user} %>
+
+    <!-- Add Blogs -->
+    <div class="vh-100 d-flex justify-content-center">
+      <div class="col-12 col-lg-8">
+        <form
+          class="border border-2 bg-light"
+          action="/api/v1/blog/addBlog"
+          method="post"
+          enctype="multipart/form-data"
+        >
+          <h1 class="text-center mt-2">Add Blog</h1>
+          <div class="ps-5 pe-5 pb-3 pt-3">
+            <div class="mb-2">
+              <label for="title" class="form-label">Title</label>
+              <input
+                type="text"
+                class="form-control"
+                id="title"
+                aria-describedby="title"
+                name="title"
+                required
+              />
+              <div id="emailHelp" class="form-text">
+                Enter Your Blog Title here
+              </div>
+            </div>
+            <div class="mb-2">
+              <label for="body" class="form-label">Description</label>
+              <textarea
+                type="text"
+                class="form-control"
+                id="body"
+                name="body"
+                rows="8"
+                style="resize: none"
+              ></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="coverImageUrl" class="form-label" name="coverImageUrl"
+                >Enter Cover Image</label
+              >
+              <input class="form-control" type="file" id="coverImageUrl" name="coverImageUrl"/>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- Add Blogs -->
+
+    <%- include('./partials/script.ejs') %>
+  </body>
+</html>

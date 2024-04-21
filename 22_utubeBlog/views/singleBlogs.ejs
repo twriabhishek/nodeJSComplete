@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include('./partials/head.ejs') %>
+
+    <title>Vloging App</title>
+  </head>
+  <body>
+    <!-- NavBar -->
+    <%- include('./partials/navbar.ejs') %>
+    <!-- NavBar -->
+
+    <!-- Single Blog Card -->
+    <div class="container">
+      <div class="row">
+        <div class="card col-8 m-auto mt-2 mb-2 pt-2">
+          <img
+            class="card-img-top"
+            src="<%= singleBlog.coverImageUrl %>"
+            alt="Not found"
+            style="max-height: 800px"
+          />
+          <div class="card-body">
+            <h5 class="card-title"><%= singleBlog.title %></h5>
+            <p class="card-text"><%= singleBlog.body %></p>
+            <div class="d-flex align-items-center justify-content-between">
+              <div class="small d-flex justify-content-start">
+                <a href="#!" class="d-flex align-items-center me-3">
+                  <i class="far fa-thumbs-up me-2"></i>
+                  <p class="mb-0">123</p>
+                </a>
+                <a href="#!" class="d-flex align-items-center me-3">
+                  <i class="far fa-comment-dots me-2"></i>
+                  <p class="mb-0"><%= comments.length %></p>
+                </a>
+                <a href="#!" class="d-flex align-items-center me-3">
+                  <i class="fas fa-share me-2"></i>
+                  <p class="mb-0">100</p>
+                </a>
+              </div>
+              <div>
+                <img
+                  src="<%= singleBlog.createdBy.profileImageUrl %>"
+                  class="rounded-circle img-fluid"
+                  alt="Not Found"
+                  height="60px"
+                  width="60px"
+                />
+                <span class="ms-2"
+                  >Written by:
+                  <span class="fw-bolder"
+                    ><%= singleBlog.createdBy.fullName %>
+                  </span></span
+                >
+              </div>
+            </div>
+          </div>
+          <hr class="hr" />
+          <div>
+            <h2 class="text-center pb-2">Comment Section</h2>
+
+            <% if (locals.user) { %>
+                <form
+                  action="/api/v1/blog/addComment/<%= singleBlog._id %>"
+                  method="post"
+                >
+                  <div
+                    class="card-footer py-3 border-0"
+                    style="background-color: #f8f9fa"
+                  >
+                    <div class="d-flex flex-start w-100">
+                      <img
+                        class="rounded-circle shadow-1-strong me-3"
+                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp"
+                        alt="avatar"
+                        width="40"
+                        height="40"
+                      />
+                      <div data-mdb-input-init class="form-outline w-100">
+                        <textarea
+                          class="form-control"
+                          id="content"
+                          rows="4"
+                          style="background: #fff; resize: none"
+                          name="content"
+                          placeholder="Enter Message here . . ."
+                        ></textarea>
+                      </div>
+                    </div>
+                    <div class="float-end mt-4 pt-1 mb-4">
+                      <button
+                        type="submit"
+                        data-mdb-button-init
+                        data-mdb-ripple-init
+                        class="btn btn-primary btn-sm"
+                      >
+                        Post comment
+                      </button>
+                      <button
+                        data-mdb-button-init
+                        data-mdb-ripple-init
+                        class="btn btn-outline-primary btn-sm"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+                </form>
+            <% } %>
+
+            <% comments.forEach(element => { %>
+                <div class="card-body">
+                    <div class="d-flex flex-start align-items-center">
+                      <img
+                        class="rounded-circle shadow-1-strong me-3"
+                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp"
+                        alt="avatar"
+                        width="60"
+                        height="60"
+                      />
+                      <div>
+                        <h6 class="fw-bold text-primary mb-1"><%= element.createdBy.fullName %></h6>
+                        <p class="text-muted small mb-0">
+                          Shared publicly - <%= element.createdBy.createdAt %>
+                        </p>
+                      </div>
+                    </div>
+                    <p class="mt-3 mb-4 pb-2">
+                        <%= element.content %>
+                    </p>
+                  </div>
+            <% }) %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Single Blog Card -->
+
+    <%- include('./partials/script.ejs') %>
+  </body>
+</html>
