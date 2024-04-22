@@ -62,81 +62,83 @@
             <h2 class="text-center pb-2">Comment Section</h2>
 
             <% if (locals.user) { %>
-                <form
-                  action="/api/v1/blog/addComment/<%= singleBlog._id %>"
-                  method="post"
-                >
-                  <div
-                    class="card-footer py-3 border-0"
-                    style="background-color: #f8f9fa"
+            <form
+              action="/api/v1/blog/addComment/<%= singleBlog._id %>"
+              method="post"
+            >
+              <div
+                class="card-footer py-3 border-0"
+                style="background-color: #f8f9fa"
+              >
+                <div class="d-flex flex-start w-100">
+                  <img
+                    class="rounded-circle shadow-1-strong me-3"
+                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp"
+                    alt="avatar"
+                    width="40"
+                    height="40"
+                  />
+                  <div data-mdb-input-init class="form-outline w-100">
+                    <textarea
+                      class="form-control"
+                      id="content"
+                      rows="4"
+                      style="background: #fff; resize: none"
+                      name="content"
+                      placeholder="Enter Message here . . ."
+                    ></textarea>
+                  </div>
+                </div>
+                <div class="float-end mt-4 pt-1 mb-4">
+                  <button
+                    type="submit"
+                    data-mdb-button-init
+                    data-mdb-ripple-init
+                    class="btn btn-primary btn-sm"
                   >
-                    <div class="d-flex flex-start w-100">
-                      <img
-                        class="rounded-circle shadow-1-strong me-3"
-                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp"
-                        alt="avatar"
-                        width="40"
-                        height="40"
-                      />
-                      <div data-mdb-input-init class="form-outline w-100">
-                        <textarea
-                          class="form-control"
-                          id="content"
-                          rows="4"
-                          style="background: #fff; resize: none"
-                          name="content"
-                          placeholder="Enter Message here . . ."
-                        ></textarea>
-                      </div>
-                    </div>
-                    <div class="float-end mt-4 pt-1 mb-4">
-                      <button
-                        type="submit"
-                        data-mdb-button-init
-                        data-mdb-ripple-init
-                        class="btn btn-primary btn-sm"
-                      >
-                        Post comment
-                      </button>
-                      <button
-                        data-mdb-button-init
-                        data-mdb-ripple-init
-                        class="btn btn-outline-primary btn-sm"
-                      >
-                        Cancel
-                      </button>
-                    </div>
-                  </div>
-                </form>
-            <% } %>
-
-            <% comments.forEach(element => { %>
-                <div class="card-body">
-                    <div class="d-flex flex-start align-items-center">
-                      <img
-                        class="rounded-circle shadow-1-strong me-3"
-                        src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp"
-                        alt="avatar"
-                        width="60"
-                        height="60"
-                      />
-                      <div>
-                        <h6 class="fw-bold text-primary mb-1"><%= element.createdBy.fullName %></h6>
-                        <p class="text-muted small mb-0">
-                          Shared publicly - <%= element.createdBy.createdAt %>
-                        </p>
-                      </div>
-                    </div>
-                    <p class="mt-3 mb-4 pb-2">
-                        <%= element.content %>
-                    </p>
-                  </div>
+                    Post comment
+                  </button>
+                  <button
+                    data-mdb-button-init
+                    data-mdb-ripple-init
+                    class="btn btn-outline-primary btn-sm"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </form>
+            <% } %> <% comments.forEach(element => { %>
+            <div class="card-body">
+              <div class="d-flex flex-start align-items-center">
+                <img
+                  class="rounded-circle shadow-1-strong me-3"
+                  src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp"
+                  alt="avatar"
+                  width="60"
+                  height="60"
+                />
+                <div>
+                  <h6 class="fw-bold text-primary mb-1">
+                    <%= element.createdBy.fullName %>
+                  </h6>
+                  <p class="text-muted small mb-0">
+                    Shared publicly - <%= element.createdBy.createdAt %>
+                  </p>
+                </div>
+              </div>
+              <p class="mt-3 mb-4 pb-2"><%= element.content %></p>
+            </div>
             <% }) %>
           </div>
         </div>
       </div>
     </div>
     <!-- Single Blog Card -->
+
+    <!-- Footer -->
+    <%- include('./partials/foot.ejs') %>
+    <!-- Footer -->
 
     <%- include('./partials/script.ejs') %>
   </body>

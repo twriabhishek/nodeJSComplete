@@ -30,21 +30,13 @@
             />
             <div class="card-body">
               <h5 class="card-title"><%= blogs[i].title %></h5>
-              <p class="card-text" style="max-height: 200px; overflow-y: auto">
-                <%= blogs[i].body %>
-              </p>
+              <p class="card-text" style="max-height: 200px; overflow-y: auto;"><%= blogs[i].body %></p>
               <div class="d-flex justify-content-between align-items-center">
                 <a
                   href="/api/v1/blog/<%= blogs[i]._id %>"
-                  class="btn btn-primary"
-                  >View</a
+                  ><i class="fa-solid fa-eye text-dark" data-bs-toggle="tooltip" data-bs-placement="top" title="View"></i></a
                 >
-                <span
-                  >Written By:
-                  <span class="fw-bolder"
-                    ><%= blogs[i].createdBy.fullName %></span
-                  ></span
-                >
+                <span><a href="/api/v1/blog/update/<%= blogs[i]._id %>"><i class="fa-solid fa-pen"  data-bs-toggle="tooltip" data-bs-placement="top" title="Click For Update" style="cursor: pointer;"></i></a></span>
               </div>
             </div>
           </div>
@@ -60,21 +52,13 @@
             />
             <div class="card-body">
               <h5 class="card-title"><%= blogs[i + 1].title %></h5>
-              <p class="card-text" style="height: 200px; overflow-y: auto">
-                <%= blogs[i + 1].body %>
-              </p>
+              <p class="card-text" style="height: 200px; overflow-y: auto;"><%= blogs[i + 1].body %></p>
               <div class="d-flex justify-content-between align-items-center">
                 <a
                   href="/api/v1/blog/<%= blogs[i + 1]._id %>"
-                  class="btn btn-primary"
-                  >View</a
+                  ><i class="fa-solid fa-eye text-dark" data-bs-toggle="tooltip" data-bs-placement="top" title="View"></i></a
                 >
-                <span
-                  >Written By:
-                  <span class="fw-bolder"
-                    ><%= blogs[i + 1].createdBy.fullName %></span
-                  ></span
-                >
+                <span><a href="/api/v1/blog/update/<%= blogs[i + 1]._id %>"><i class="fa-solid fa-pen"  data-bs-toggle="tooltip" data-bs-placement="top" title="Click For Update" style="cursor: pointer;"></i></a></span>
               </div>
             </div>
           </div>
@@ -86,6 +70,7 @@
       <% } %>
     </div>
     <!-- All Blogs  -->
+
 
     <!-- Footer -->
     <%- include('./partials/foot.ejs') %>

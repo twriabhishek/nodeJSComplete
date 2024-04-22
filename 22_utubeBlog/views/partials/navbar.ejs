@@ -23,7 +23,7 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav ms-auto">
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown me-2">
           <a
             class="nav-link dropdown-toggle text-white"
             href="#"
@@ -31,6 +31,7 @@
             role="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
+            me-4
           >
             <% if (locals.user) { %> <% let fullName = locals.user.name; %> <%
             var firstName = fullName.split(' ')[0]; %> Welcome <%= firstName %>
@@ -40,6 +41,9 @@
             <% if (locals.user) { %>
               <li>
                 <a class="dropdown-item" href="/api/v1/auth/logout">Logout</a>
+              </li>
+              <li>
+                <a class="dropdown-item" href="#">Profile</a>
               </li>
             <% } else {%>
             <li>
@@ -51,12 +55,10 @@
             <%} %>
           </ul>
         </li>
-
-        <a class="nav-link active" aria-current="page" href="#">Home</a>
-        <a class="nav-link active" aria-current="page" href="#">About</a>
-        <a class="nav-link active" aria-current="page" href="#">Contact</a>
+        <a class="nav-link active" aria-current="page" href="/">Home</a>
         <% if (locals.user) { %>
         <a class="nav-link active" aria-current="page" href="/api/v1/blog/addBlog">Add Blogs</a>
+        <a class="nav-link active" aria-current="page" href="/api/v1/blog/myBlog">My Blogs</a>
         <% } %>
       </div>
     </div>

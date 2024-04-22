@@ -12,18 +12,18 @@
     <%- include('./partials/navbar.ejs') %>
     <!-- NavBar -->
 
-    <% {locals.user} %>
+    <!-- <% {locals.user} %> -->
 
-    <!-- Add Blogs -->
+    <!-- Update Blogs -->
     <div class="vh-100 d-flex justify-content-center">
       <div class="col-12 col-lg-8">
         <form
           class="border border-2 bg-light"
-          action="/api/v1/blog/addBlog"
+          action="/api/v1/blog/updateBlog/<%= locals.singleBlog._id %>"
           method="post"
           enctype="multipart/form-data"
         >
-          <h1 class="text-center mt-2">Add Blog</h1>
+          <h1 class="text-center mt-2">Update Blog</h1>
           <div class="ps-5 pe-5 pb-3 pt-3">
             <div class="mb-2">
               <label for="title" class="form-label">Title</label>
@@ -33,6 +33,7 @@
                 id="title"
                 aria-describedby="title"
                 name="title"
+                value="<%= locals.singleBlog.title %>"
                 required
               />
               <div id="emailHelp" class="form-text">
@@ -48,27 +49,38 @@
                 name="body"
                 rows="8"
                 style="resize: none"
-              ></textarea>
+              >
+               <%= locals.singleBlog.body %></textarea
+              >
             </div>
             <div class="mb-3">
               <label for="coverImageUrl" class="form-label" name="coverImageUrl"
                 >Enter Cover Image</label
               >
-              <input class="form-control" type="file" id="coverImageUrl" name="coverImageUrl"/>
+              <input
+                class="form-control"
+                type="file"
+                id="coverImageUrl"
+                name="coverImageUrl"
+              />
+              <% const imageUrl = locals.singleBlog.coverImageUrl; %>
+              <span
+                >Current File: <%= imageUrl.substring(imageUrl.lastIndexOf('/')
+                + 1) %></span
+              >
             </div>
             <div class="text-center">
-              <button type="submit" class="btn btn-primary">Submit</button>
+              <button type="submit" class="btn btn-primary">Update</button>
             </div>
           </div>
         </form>
       </div>
     </div>
-    <!-- Add Blogs -->
+    <!-- Update Blogs -->
 
-        <!-- Footer -->
-        <%- include('./partials/foot.ejs') %>
-        <!-- Footer -->
-
+    <!-- Footer -->
+    <%- include('./partials/foot.ejs') %>
+    <!-- Footer -->
 
     <%- include('./partials/script.ejs') %>
   </body>
