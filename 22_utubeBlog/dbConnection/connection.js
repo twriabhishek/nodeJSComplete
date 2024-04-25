@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const connection = async () => {
   return await mongoose
-    .connect("mongodb://127.0.0.1:27017/nodeTestBloogingApp")
+    .connect(process.env.MONGO_URL)
     .then(() => {
       console.log("MongoDB connected");
     })

@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require('express');
 const connection = require('./dbConnection/connection.js');
 const userauthRoute = require('./route/userauth.route.js');
@@ -9,7 +10,7 @@ const path = require('path');
 
 
 const app = express();
-const PORT = 8023;
+const PORT = process.env.PORT || 8023;
 
 //Make connection
 connection();
@@ -20,11 +21,13 @@ app.set('view engine', 'ejs');
 app.set('views', path.resolve("./views"));
 
 
+
 //Use Middleware
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(checkForAuthentication);
+
 
 
 //Routes
@@ -33,7 +36,7 @@ app.use("/api/v1/blog", blogRoute);
 app.use(express.static(path.resolve('./public')));
 
 
-
+//Home Page
 app.get('/', async(req, res)=>{
     const allBlogs = await Blog.find({}).populate('createdBy');
     res.render("home.ejs", {
@@ -41,6 +44,7 @@ app.get('/', async(req, res)=>{
         blogs: allBlogs,
     })
 })
+
 
 app.listen(PORT, ()=>{
     console.log(`Server is listening on PORT: ${PORT}`);
