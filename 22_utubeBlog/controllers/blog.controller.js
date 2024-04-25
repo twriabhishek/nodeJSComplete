@@ -1,13 +1,18 @@
 const Blog = require("../models/blog.model.js");
-const Comment = require('../models/comments.model.js');
+const Comment = require("../models/comments.model.js");
 const authUser = require("../models/user.model.js");
+
+
 
 const handleAddBlog = async (req, res) => {
   const { title, body, coverImageUrl } = req.body;
+  imageurl = req.file;
 
   // Check if any required field is missing or blank
-  if (!title || title.trim() === "") {
-    return res.status(404).json({ error: "Title required" });
+  if (!title || title.trim() === "" || !body || body.trim() === "" || !imageurl || imageurl.trim === "") {
+    return res.render("addBlogs.ejs", {
+      error: "All fields are Required",
+    });
   }
 
   try {
@@ -28,8 +33,6 @@ const handleAddBlog = async (req, res) => {
   }
 };
 
-
-
 const handleUpdateBlog = async (req, res) => {
   const { title, body, coverImageUrl } = req.body;
   const blogId = req.params.id;
@@ -41,7 +44,6 @@ const handleUpdateBlog = async (req, res) => {
   }
 
   try {
-    
     // Find the blog by ID
     const blog = await Blog.findById(blogId);
     // Check if the blog exists
@@ -50,7 +52,9 @@ const handleUpdateBlog = async (req, res) => {
     }
     // Check if the current user is the creator of the blog
     if (blog.createdBy.toString() !== createdUser) {
-      return res.status(403).json({ error: "You are not authorized to update this blog" });
+      return res
+        .status(403)
+        .json({ error: "You are not authorized to update this blog" });
     }
     // Update the blog fields
     blog.title = title;
@@ -70,8 +74,7 @@ const handleUpdateBlog = async (req, res) => {
   }
 };
 
-
-const handleAddComment = async(req, res) => {
+const handleAddComment = async (req, res) => {
   const { content } = req.body;
 
   // Check if any required field is missing or blank
@@ -96,4 +99,38 @@ const handleAddComment = async(req, res) => {
   }
 };
 
-module.exports = { handleAddBlog, handleAddComment, handleUpdateBlog };
+const handleDeleteBlog = async (req, res) => {
+  const blogId = req.params.blogId;
+  console.log(blogId);
+
+  // Check if any required field is missing or blank
+  if (!blogId || blogId.trim() === "") {
+    return res.status(404).json({ error: "Id required" });
+  }
+
+  try {
+    // Use Mongoose's findByIdAndDelete method to find and delete the blog by its ID
+    const deletedBlog = await Blog.findByIdAndDelete(blogId);
+
+    if (!deletedBlog) {
+      // If no blog with the specified ID was found, return a 404 Not Found status
+      return res.status(404).json({ error: "Blog not found" });
+    }
+
+    // Send a success response
+    return res.redirect("/api/v1/blog/myBlog");
+  } catch (error) {
+    // Handle any errors
+    console.error("Error occurred during signup:", error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+
+
+module.exports = {
+  handleAddBlog,
+  handleAddComment,
+  handleUpdateBlog,
+  handleDeleteBlog,
+};

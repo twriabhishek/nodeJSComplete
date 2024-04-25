@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include('./partials/head.ejs') %>
+
+    <title>Vloging App</title>
+  </head>
+  <body>
+    <!-- NavBar -->
+    <%- include('./partials/navbar.ejs') %>
+    <!-- NavBar -->
+
+    <!-- Edit Profile  -->
+    <div class="container mt-4 mb-4">
+      <div class="mb-1 d-flex flex-column align-items-center">
+        <h2 class="">Edit Profile</h2>
+        <hr class="hr w-25" />
+      </div>
+      <form
+        class="bg-light p-4"
+        method="post"
+        action="/api/v1/auth/CUuserDetail/<%= locals.user._id %>"
+        enctype="multipart/form-data"
+      >
+        <!-- Text input -->
+        <div data-mdb-input-init class="form-outline mb-3">
+          <label class="form-label" for="fullName">Full Name</label>
+          <input
+            type="text"
+            id="fullName"
+            class="form-control m-0"
+            placeholder="Enter Your Full Name"
+            name="fullName"
+            value="<%= locals.userPer.fullName %>"
+          />
+        </div>
+
+        <!-- 2 column grid layout with text inputs for the first and last names -->
+        <div class="row mb-3">
+          <div class="col-12 col-lg-6 mb-3 mb-lg-0">
+            <div data-mdb-input-init class="form-outline">
+              <label class="form-label" for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                class="form-control m-0"
+                placeholder="Enter Your Email"
+                name="email"
+                value="<%= locals.userPer.email %>"
+                disabled
+              />
+            </div>
+          </div>
+          <div class="col-12 col-lg-6">
+            <div data-mdb-input-init class="form-outline">
+              <label class="form-label" for="mobile">Mobile</label>
+              <input
+                type="text"
+                id="mobile"
+                class="form-control m-0"
+                placeholder="Enter Your Mobile"
+                name="mobileNumber"
+                value="<% if (locals.completeUserDetails && locals.completeUserDetails.length > 0 && locals.completeUserDetails[0].mobileNumber) { %>
+                  <%= locals.completeUserDetails[0].mobileNumber %>
+              <% } %>"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div data-mdb-input-init class="form-outline mb-3">
+          <label class="form-label" for="address">Address</label>
+          <input
+            type="text"
+            id="address"
+            class="form-control m-0"
+            placeholder="Enter Your Full Address"
+            name="address"
+            value="<% if (locals.completeUserDetails && locals.completeUserDetails.length > 0 && locals.completeUserDetails[0].address) { %>
+              <%= locals.completeUserDetails[0].address %>
+          <% } %>"
+          />
+        </div>
+
+        <!-- 2 column grid layout with text inputs for the first and last names -->
+        <div class="row mb-3">
+          <div class="col-12 col-lg-4 mb-3 mb-lg-0">
+            <div data-mdb-input-init class="form-outline">
+              <label class="form-label" for="instaLink">Insta Link</label>
+              <input
+                type="text"
+                id="instaLink"
+                class="form-control m-0"
+                placeholder="Enter Your Full Name Insta Link"
+                name="instaLink"
+                value="<% if (locals.completeUserDetails && locals.completeUserDetails.length > 0 && locals.completeUserDetails[0].instaLink) { %>
+                  <%= locals.completeUserDetails[0].instaLink %>
+              <% } %>"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-lg-4 mb-3 mb-lg-0">
+            <div data-mdb-input-init class="form-outline">
+              <label class="form-label" for="fbLink">FB Link</label>
+              <input
+                type="text"
+                id="fbLink"
+                class="form-control m-0"
+                placeholder="Enter Your FB Link"
+                name="fbLink"
+                value="<% if (locals.completeUserDetails && locals.completeUserDetails.length > 0 && locals.completeUserDetails[0].fbLink) { %>
+                 <%= locals.completeUserDetails[0].fbLink %>
+              <% } %>"
+              />
+            </div>
+          </div>
+          <div class="col-12 col-lg-4">
+            <div data-mdb-input-init class="form-outline">
+              <label class="form-label" for="twitterLink">Twitter Link</label>
+              <input
+                type="text"
+                id="twitterLink"
+                class="form-control m-0"
+                placeholder="Enter Your Twitter Link"
+                name="twitterLink"
+                value="<% if (locals.completeUserDetails && locals.completeUserDetails.length > 0 && locals.completeUserDetails[0].twitterLink) { %>
+                  <%= locals.completeUserDetails[0].twitterLink %>
+              <% } %>"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div data-mdb-input-init class="form-outline mb-3">
+          <label for="formFile" class="form-label">Upload Image</label>
+          <input
+            class="form-control m-0"
+            type="file"
+            id="formFile"
+            name="userphoto"
+          />
+          <% const imageUrl = locals.userPer.profileImageUrl; %>
+          <span
+            >Current File: <%= imageUrl.substring(imageUrl.lastIndexOf('/') + 1)
+            %></span
+          >
+        </div>
+        <!-- Submit button -->
+        <div class="text-center d-flex justify-content-end">
+          <a
+            class="btn btn-outline-primary me-3"
+            href="/api/v1/blog/profile/<%= locals.user._id %>"
+            role="button"
+            >Go Back</a
+          >
+          <button
+            data-mdb-ripple-init
+            type="submit"
+            class="btn btn-primary btn-block"
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Edit Profile  -->
+
+    <!-- Footer -->
+    <%- include('./partials/foot.ejs') %>
+    <!-- Footer -->
+
+    <%- include('./partials/script.ejs') %>
+  </body>
+</html>

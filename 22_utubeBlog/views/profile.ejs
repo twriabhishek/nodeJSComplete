@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include('./partials/head.ejs') %>
+
+    <title>Vloging App</title>
+  </head>
+  <body>
+    <!-- NavBar -->
+    <%- include('./partials/navbar.ejs') %>
+    <!-- NavBar -->
+
+    <!-- My Profile -->
+    <section style="background-color: #eee">
+      <div class="container py-5">
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="card mb-4">
+              <div class="card-body text-center">
+                <img
+                  src="<%= locals.userdetails.profileImageUrl ? locals.userdetails.profileImageUrl : '/images/default.jpg' %>"
+                  alt="avatar"
+                  class="rounded-circle img-fluid"
+                  style="width: 150px"
+                />
+                <h5 class="my-3"><%= locals.userdetails.fullName ? locals.userdetails.fullName : 'Default Name' %></h5>
+                <p class="text-muted mb-1"><%= locals.userdetails.email ? locals.userdetails.email : 'Default Email' %></p>
+                <p class="text-muted mb-4"><%= locals.completeUserDetails && locals.completeUserDetails.length > 0 ? locals.completeUserDetails[0].address : 'Default Address' %></p>
+                <div class="m-2">
+                  <span class="me-2">
+                    <a target="_blank" href="<%= locals.completeUserDetails && locals.completeUserDetails.length > 0 && locals.completeUserDetails[0].twitterLink ? locals.completeUserDetails[0].twitterLink : 'Default Name' %>"><i class="fab fa-twitter fa-lg" style="color: #55acee"></i></a>
+                  </span>
+                  <span class="me-2"
+                    ><a target="_blank" href="<%= locals.completeUserDetails && locals.completeUserDetails.length > 0 && locals.completeUserDetails[0].twitterLink ? locals.completeUserDetails[0].twitterLink : 'Default Name' %>"><i
+                      class="fab fa-instagram fa-lg"
+                      style="color: #ac2bac"
+                    ></i
+                  ></a></span>
+                  <span>
+                    <a target="_blank" href="<%= locals.completeUserDetails && locals.completeUserDetails.length > 0 && locals.completeUserDetails[0].twitterLink ? locals.completeUserDetails[0].twitterLink : 'Default Name' %>">
+                    <i
+                      class="fab fa-facebook-f fa-lg"
+                      style="color: #3b5998"
+                    ></i
+                  ></a></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-8">
+            <div class="card mb-4">
+              <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center">
+                <h4 class="mb-0">Personal Details</h4>
+                <a
+                href="/api/v1/blog/editprofile/<%= locals.userdetails._id %>"
+                data-mdb-ripple-init
+                data-mdb-tooltip-init
+                data-mdb-placement="top"
+                title="Edit Profile"
+                ><i class="fa-solid fa-pen"></i
+              ></a>
+            </div>
+                <hr class="hr w-50 mt-2">
+                <div class="row">
+                  <div class="col-sm-3">
+                    <p class="mb-0">Full Name</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <p class="text-muted mb-0"><%= locals.userdetails.fullName %></p>
+                  </div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-sm-3">
+                    <p class="mb-0">Email</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <p class="text-muted mb-0"><%= locals.userdetails.email %></p>
+                  </div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-sm-3">
+                    <p class="mb-0">Mobile</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <% if (locals.completeUserDetails && locals.completeUserDetails.length > 0 && locals.completeUserDetails[0].mobileNumber) { %>
+                      <p class="text-muted mb-0"><%= locals.completeUserDetails[0].mobileNumber %></p>
+                  <% } else { %>
+                      <p class="text-muted mb-0">Default Mobile Number</p>
+                  <% } %>
+                  </div>
+                </div>
+                <hr />
+                <div class="row">
+                  <div class="col-sm-3">
+                    <p class="mb-0">Address</p>
+                  </div>
+                  <div class="col-sm-9">
+                    <% if (locals.completeUserDetails && locals.completeUserDetails.length > 0 && locals.completeUserDetails[0].address) { %>
+                      <p class="text-muted mb-0"><%= locals.completeUserDetails[0].address %></p>
+                  <% } else { %>
+                      <p class="text-muted mb-0">Default Adress</p>
+                  <% } %>
+                  </div>
+                </div>
+                <hr />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- My Profile -->
+
+    <!-- Footer -->
+    <%- include('./partials/foot.ejs') %>
+    <!-- Footer -->
+
+    <%- include('./partials/script.ejs') %>
+  </body>
+</html>

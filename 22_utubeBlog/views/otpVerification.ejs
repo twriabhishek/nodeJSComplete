@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include('./partials/head.ejs') %>
+    <title>login</title>
+  </head>
+  <body>
+    <!-- NavBar -->
+    <%- include('./partials/navbar.ejs') %>
+    <!-- NavBar -->
+
+    <div class="vh-100 d-flex justify-content-center align-items-center">
+      <div class="col-10 col-lg-6">
+        <form
+          class="border border-2 bg-light"
+          action="/api/v1/auth/signup?id=<%= locals.ids %>"
+          method="post"
+        >
+          <h1 class="text-center mt-2">Validate Otp</h1>
+          <!-- <%= locals.ids %> -->
+          <div class="p-4">
+            <div class="mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="otppin"
+                aria-describedby="otppin"
+                name="otppin"
+                placeholder="Enter your otp here"
+              />
+              <div id="emailHelp" class="form-text">
+                <a
+                  type="button"
+                  href="/api/v1/auth/getotp?fullName=<%= locals.fullName %>&email=<%= locals.email %>&password=<%= locals.password %>"
+                  class="btn btn-link"
+                  >Resend OTP</a
+                >
+              </div>
+            </div>
+            <div class="d-flex justify-content-end">
+              <a class="btn btn-outline-dark me-2" href="/api/v1/auth/Signup"
+                >Cancel</a
+              >
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <%- include('./partials/foot.ejs') %>
+    <!-- Footer -->
+
+    <%- include('./partials/script.ejs') %>
+  </body>
+</html>

@@ -10,11 +10,16 @@
     <!-- NavBar -->
     <%- include('./partials/navbar.ejs') %>
     <!-- NavBar -->
+
+    <% if (locals.error) { %>
+      <div class="alert alert-danger" role="alert"><%= locals.error %></div>
+    <% } %>
+
     <div class="vh-100 d-flex justify-content-center align-items-center">
       <div class="col-10 col-lg-6">
         <form
           class="border border-2 bg-light"
-          action="/api/v1/auth/signup"
+          action="/api/v1/auth/getotp"
           method="post"
         >
           <h1 class="text-center mt-2">Signup</h1>
@@ -27,6 +32,7 @@
                 id="fullName"
                 aria-describedby="fullName"
                 name="fullName"
+                required
               />
             </div>
             <div class="mb-3">
@@ -37,6 +43,7 @@
                 id="email"
                 aria-describedby="email"
                 name="email"
+                required
               />
               <div id="emailHelp" class="form-text">
                 We'll never share your email with anyone else.
@@ -50,6 +57,7 @@
                 class="form-control"
                 id="password"
                 name="password"
+                required
               />
             </div>
             <div class="text-center">
@@ -59,6 +67,53 @@
         </form>
       </div>
     </div>
+
+    <!-- Model -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-6" id="exampleModalLabel">Enter OTP</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-1">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="recipient-name"
+                  placeholder="Enter 6 digit otp here"
+                />
+                <button type="button" class="btn btn-link">Resend OTP</button>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <button type="button" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Model -->
 
     <!-- Footer -->
     <%- include('./partials/foot.ejs') %>

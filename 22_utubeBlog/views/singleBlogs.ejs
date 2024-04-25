@@ -19,6 +19,7 @@
           <img
             class="card-img-top"
             src="<%= singleBlog.coverImageUrl %>"
+            src="<%= singleBlog.coverImageUrl ? singleBlog.coverImageUrl : 'https://mdbcdn.b-cdn.net/img/new/fluid/city/112.webp' %>"
             alt="Not found"
             style="max-height: 800px"
           />
@@ -42,7 +43,7 @@
               </div>
               <div>
                 <img
-                  src="<%= singleBlog.createdBy.profileImageUrl %>"
+                  src="<%= singleBlog.createdBy && singleBlog.createdBy.profileImageUrl ? singleBlog.createdBy.profileImageUrl : 'https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp' %>"
                   class="rounded-circle img-fluid"
                   alt="Not Found"
                   height="60px"
@@ -73,7 +74,7 @@
                 <div class="d-flex flex-start w-100">
                   <img
                     class="rounded-circle shadow-1-strong me-3"
-                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp"
+                    src=<%= (locals.loggedInuser[0].profileImageUrl) %>
                     alt="avatar"
                     width="40"
                     height="40"
@@ -113,7 +114,7 @@
               <div class="d-flex flex-start align-items-center">
                 <img
                   class="rounded-circle shadow-1-strong me-3"
-                  src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp"
+                  src="<%= element.createdBy && element.createdBy.profileImageUrl ? element.createdBy.profileImageUrl : 'https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(19).webp' %>"
                   alt="avatar"
                   width="60"
                   height="60"

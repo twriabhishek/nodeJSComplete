@@ -30,13 +30,50 @@
             />
             <div class="card-body">
               <h5 class="card-title"><%= blogs[i].title %></h5>
-              <p class="card-text" style="max-height: 200px; overflow-y: auto;"><%= blogs[i].body %></p>
-              <div class="d-flex justify-content-between align-items-center">
-                <a
-                  href="/api/v1/blog/<%= blogs[i]._id %>"
-                  ><i class="fa-solid fa-eye text-dark" data-bs-toggle="tooltip" data-bs-placement="top" title="View"></i></a
-                >
-                <span><a href="/api/v1/blog/update/<%= blogs[i]._id %>"><i class="fa-solid fa-pen"  data-bs-toggle="tooltip" data-bs-placement="top" title="Click For Update" style="cursor: pointer;"></i></a></span>
+              <p class="card-text" style="max-height: 200px; overflow-y: auto">
+                <%= blogs[i].body %>
+              </p>
+              <div
+                class="d-flex flex-row justify-content-between align-items-center bg-light py-2 px-1"
+              >
+                <span class="">Actions</span>
+                <div class="d-flex flex-row">
+                  <span class="me-4"
+                    ><a href="/api/v1/blog/<%= blogs[i]._id %>"
+                      ><i
+                        class="fa-solid fa-eye text-dark"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="View"
+                        style="color: black"
+                      ></i></a
+                  ></span>
+                  <span class="me-4"
+                    ><a href="/api/v1/blog/update/<%= blogs[i]._id %>"
+                      ><i
+                        class="fa-solid fa-pen"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="Update"
+                        style="color: black"
+                      ></i></a
+                  ></span>
+                  <span class="">
+                    <a
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
+                      onclick="updateDeleteFormAction('<%= blogs[i]._id %>')"
+                    >
+                      <i
+                        class="fa-solid fa-trash"
+                        style="color: black; cursor: pointer"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="Delete"
+                      ></i
+                    ></a>
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -52,13 +89,50 @@
             />
             <div class="card-body">
               <h5 class="card-title"><%= blogs[i + 1].title %></h5>
-              <p class="card-text" style="height: 200px; overflow-y: auto;"><%= blogs[i + 1].body %></p>
-              <div class="d-flex justify-content-between align-items-center">
-                <a
-                  href="/api/v1/blog/<%= blogs[i + 1]._id %>"
-                  ><i class="fa-solid fa-eye text-dark" data-bs-toggle="tooltip" data-bs-placement="top" title="View"></i></a
-                >
-                <span><a href="/api/v1/blog/update/<%= blogs[i + 1]._id %>"><i class="fa-solid fa-pen"  data-bs-toggle="tooltip" data-bs-placement="top" title="Click For Update" style="cursor: pointer;"></i></a></span>
+              <p class="card-text" style="height: 200px; overflow-y: auto">
+                <%= blogs[i + 1].body %>
+              </p>
+              <div
+                class="d-flex flex-row justify-content-between align-items-center bg-light py-2 px-1"
+              >
+                <span class="">Actions</span>
+                <div class="d-flex flex-row">
+                  <span class="me-4"
+                    ><a href="/api/v1/blog/<%= blogs[i+1]._id %>"
+                      ><i
+                        class="fa-solid fa-eye text-dark"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="View"
+                        style="color: black"
+                      ></i></a
+                  ></span>
+                  <span class="me-4"
+                    ><a href="/api/v1/blog/update/<%= blogs[i+1]._id %>"
+                      ><i
+                        class="fa-solid fa-pen"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="Update"
+                        style="color: black"
+                      ></i></a
+                  ></span>
+                  <span class="">
+                    <a
+                      data-bs-toggle="modal"
+                      data-bs-target="#exampleModal"
+                      onclick="updateDeleteFormAction('<%= blogs[i+1]._id %>')"
+                    >
+                      <i
+                        class="fa-solid fa-trash"
+                        style="color: black; cursor: pointer"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="Delete"
+                      ></i
+                    ></a>
+                  </span>
+                </div>
               </div>
             </div>
           </div>
@@ -71,8 +145,50 @@
     </div>
     <!-- All Blogs  -->
 
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <div class="modal-title fs-5" id="exampleModalLabel">
+              Do You really want to delete?
+            </div>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" data-bs-dismiss="modal">
+              No
+            </button>
+            <!-- Form for delete action -->
+            <form id="deleteForm" method="post">
+              <button type="submit" class="btn btn-primary">Yes</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal -->
 
-    <!-- Footer -->
+    <!-- Script to update form action with blog ID -->
+    <script>
+      function updateDeleteFormAction(blogId) {
+        document.getElementById(
+          "deleteForm"
+        ).action = `/api/v1/blog/delete/${blogId}`;
+      }
+    </script>
+
     <%- include('./partials/foot.ejs') %>
     <!-- Footer -->
 
