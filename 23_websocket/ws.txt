@@ -1,0 +1,21 @@
+1)Normally yeh hota hai ki jab koi client, server ko request karta hai then usi ke sath client and server ke beech 
+ek connection establish ho jata hai aur badley m server uss client ki request ka response send karta hai. Aur jab yeh request
+and response cycle complete ho jati hai then connection close ho jata hai.
+
+2)polling m basically client every second server ko poll karta hai ki hamarey liye kuch message hai ki nahi.
+
+3)Real time applications ko polling ke through achieve kiya ja sakta hai. But polling ek right way nahi because yeh hamarey server ki
+performance ko overkill kar deta hai aur server parr too much load increase ho jata hai.
+
+4)Isliye real time application ke liye hum websocket ka use kartey hai.
+
+5)websocket ek protocol hai jo bidirectional communication karta hai. Means ws m connection close nahi hota hai.
+
+6)ws connection banane k liye client, server ko ek http request karta hai aur header m updrade send karta hai server is upgrade
+ko dekhkar ek ws connection establish kar leta hai.
+
+7)Upgrade
+The HTTP 1.1 (only) Upgrade header can be used to upgrade an already established client/server connection to a different protocol (over the same transport protocol). For example, it can be used by a client to upgrade a connection from HTTP 1.1 to HTTP 2.0, or an HTTP or HTTPS connection into a WebSocket.
+
+8)The WebSocket API is an advanced technology that makes it possible to open a two-way interactive communication session between the user's browser and a server. With this API, you can send messages to a server and receive event-driven responses without having to poll the server for a reply.
+

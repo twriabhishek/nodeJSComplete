@@ -1,0 +1,45 @@
+
+#messages {
+  overflow-y: auto;
+  max-height: 76vh;
+}
+
+.client-message {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.other-message {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.client-message-outer {
+  background-color: #4d9ef5; /* Blue background for client's messages */
+  color: #fff; /* White text color for client's messages */
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.other-message-outer {
+  background-color: #d8dfe6; /* Light gray background for other users' messages */
+  color: #000; /* Black text color for other users' messages */
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+/* Added style for name and timestamp */
+.message-meta {
+  font-size: 0.5rem;
+}
+
+.client-message-outer .message-meta {
+  display: flex;
+  justify-content: flex-start;
+}
+.other-message-outer .message-meta {
+  display: flex;
+  justify-content: flex-end;
+}
